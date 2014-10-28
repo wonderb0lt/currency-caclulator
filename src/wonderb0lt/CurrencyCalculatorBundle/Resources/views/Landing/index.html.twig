@@ -1,3 +1,54 @@
-<h1>It works</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A tiny currency calculator</title>
+        <meta name="author" content="Patrick Stegmann">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <style>
+            body {
+                margin: 2%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-lg-4" id="calc">
+                <form class="form-inline" role="form">
+                    <h1>Tiny Currency Calculator</h1>
+                    Convert
+                    <div class="form-group">
+                        <label class="sr-only" for="source-amount">The source amount, as a floating point number</label>
+                        <input type="number" name="source-amount" id="source-amount" placeholder="Amount (i.e. 3.14)" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="source-currency">Source currency</label>
+                        <select name="source-currency" id="source-currency" class="form-control">
+                            <!-- TODO: Fill with actual values -->
+                            <option value="eur" selected>&euro;</option>
+                            <option value="usd">&dollar;</option>
+                            <option value="yen">&yen;</option>
+                        </select>
+                    </div>
+                    to
+                    <div class="form-group">
+                        <label class="sr-only" for="destinaton-currency">Destination currency</label>
+                        <select name="destination-currency" id="destinaton-currency" class="form-control">
+                            <!-- TODO: Fill with actual values -->
+                            <option value="eur" selected>&euro;</option>
+                            <option value="usd">&dollar;</option>
+                            <option value="yen">&yen;</option>
+                        </select>
+                    </div>
 
-But this is not an Apache Webserver.
+                </form>
+            </div>
+        </div>
+
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script>
+
+        </script>
+    </body>
+</html>

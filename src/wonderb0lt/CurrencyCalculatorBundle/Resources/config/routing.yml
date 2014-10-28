@@ -1,3 +1,7 @@
 _landing:
   path: /
   defaults:  { _controller: wonderb0ltCurrencyCalculatorBundle:Landing:index }
+
+_conversion:
+  path: /conversion/{from}
+  defaults:  { _controller: wonderb0ltCurrencyCalculatorBundle:Landing:conversionRate }

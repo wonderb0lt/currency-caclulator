@@ -3,25 +3,36 @@
     <head>
         <title>A tiny currency calculator</title>
         <meta name="author" content="Patrick Stegmann">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <style>
             body {
                 margin: 2%;
+            }
+
+            #resultbox {
+                margin-top: 1%;
+                font-size: 1.2em;
+            }
+
+            #result {
+                font-weight: bold;
             }
         </style>
     </head>
     <body>
         <div class="row">
             <div class="col-lg-4" id="calc">
-                <form class="form-inline" role="form">
+                <form class="form" role="form">
                     <h1>Tiny Currency Calculator</h1>
-                    Convert
+                    <small>Usage: Just enter values in the fields below, the converted amount should appear at the bottom of the page</small>
+                    <hr>
                     <div class="form-group">
-                        <label class="sr-only" for="source-amount">The source amount, as a floating point number</label>
+                        <label for="source-amount">Amount</label>
                         <input type="number" name="source-amount" id="source-amount" placeholder="Amount (i.e. 3.14)" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="source-currency">Source currency</label>
+                        <label for="source-currency">Source currency</label>
                         <select name="source-currency" id="source-currency" class="form-control">
                             <!-- TODO: Fill with actual values -->
                             <option value="eur" selected>&euro;</option>
@@ -29,26 +40,61 @@
                             <option value="yen">&yen;</option>
                         </select>
                     </div>
-                    to
                     <div class="form-group">
-                        <label class="sr-only" for="destinaton-currency">Destination currency</label>
-                        <select name="destination-currency" id="destinaton-currency" class="form-control">
+                        <label for="destination-currency">Destination currency</label>
+                        <select name="destination-currency" id="destination-currency" class="form-control">
                             <!-- TODO: Fill with actual values -->
                             <option value="eur" selected>&euro;</option>
                             <option value="usd">&dollar;</option>
                             <option value="yen">&yen;</option>
                         </select>
                     </div>
-
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4" id="resultbox" hidden>
+                Converted amount: <span id="result">X.YZ&dollar;</span>
             </div>
         </div>
 
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script>
+            function displayResult(val) {
+                var resultDiv = $("#resultbox");
+                var resultSpan = $("#result");
 
+                if (resultDiv.is(":hidden")) {
+                    resultDiv.show();
+                }
+
+                resultSpan.html(val);
+                resultSpan.effect("highlight", 1000)
+            }
+
+            function onFieldUpdate() {
+                var amount = $("#source-amount").val();
+                var sourceCurrency = $("#source-currency").val();
+                var destinationCurrency = $("#destination-currency").val();
+
+                if (amount !== "" && sourceCurrency != destinationCurrency) {
+                    var url = "conversion/" + sourceCurrency;
+                    $.ajax({
+                        url: url,
+                        data: {amount: parseFloat(amount), to: destinationCurrency},
+                    }).done(function(data) {
+                        displayResult(data["value"]);
+                    });
+
+                }
+            }
+
+            $("#source-amount").keyup(onFieldUpdate);
+            $("#source-currency").change(onFieldUpdate);
+            $("#destination-currency").change(onFieldUpdate);
         </script>
     </body>
 </html>

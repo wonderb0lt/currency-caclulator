@@ -1,0 +1,4 @@
+wonderb0lt_currency_calculator:
+    resource: "@wonderb0ltCurrencyCalculatorBundle/Resources/config/routing.yml"
+    prefix:   /
+

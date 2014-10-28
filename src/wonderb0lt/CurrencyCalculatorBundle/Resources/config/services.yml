@@ -1,0 +1,4 @@
+services:
+#    wonderb0lt_currency_calculator.example:
+#        class: wonderb0lt\CurrencyCalculatorBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

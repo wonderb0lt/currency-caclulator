@@ -1,0 +1,3 @@
+_landing:
+  path: /
+  defaults:  { _controller: wonderb0ltCurrencyCalculatorBundle:Landing:index }

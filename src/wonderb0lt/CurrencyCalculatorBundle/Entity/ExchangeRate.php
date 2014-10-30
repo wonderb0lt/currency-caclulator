@@ -25,7 +25,7 @@ class ExchangeRate
      * @var Currency
      *
      * @ORM\OneToOne(targetEntity="Currency")
-     * @ORM\JoinColumn(name="sourceCurrency", refencedColumn="id")
+     * @ORM\JoinColumn(name="sourceCurrency", referencedColumnName="id")
      */
     private $sourceCurrency;
 
@@ -33,7 +33,7 @@ class ExchangeRate
      * @var Currency
      *
      * @ORM\OneToOne(targetEntity="Currency")
-     * @ORM\JoinColumn(name="destinationCurrency", refencedColumn="id")
+     * @ORM\JoinColumn(name="destinationCurrency", referencedColumnName="id")
      */
     private $destinationCurrency;
 

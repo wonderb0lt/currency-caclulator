@@ -35,7 +35,6 @@ class Currency
      */
     private $displayName;
 
-
     /**
      * Get id
      *

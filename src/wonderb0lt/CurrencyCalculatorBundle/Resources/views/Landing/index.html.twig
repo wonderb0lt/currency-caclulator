@@ -17,6 +17,7 @@
 
             #result {
                 font-weight: bold;
+                border-bottom: 1px dashed gray;
             }
         </style>
     </head>
@@ -34,19 +35,17 @@
                     <div class="form-group">
                         <label for="source-currency">Source currency</label>
                         <select name="source-currency" id="source-currency" class="form-control">
-                            <!-- TODO: Fill with actual values -->
-                            <option value="eur" selected>&euro;</option>
-                            <option value="usd">&dollar;</option>
-                            <option value="yen">&yen;</option>
+                            {% for currency in currencies %}
+                                <option value="{{ currency.isoCode }}">{{ currency.displayName }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="destination-currency">Destination currency</label>
                         <select name="destination-currency" id="destination-currency" class="form-control">
-                            <!-- TODO: Fill with actual values -->
-                            <option value="eur" selected>&euro;</option>
-                            <option value="usd">&dollar;</option>
-                            <option value="yen">&yen;</option>
+                            {% for currency in currencies %}
+                                <option value="{{ currency.isoCode }}">{{ currency.displayName }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </form>
@@ -54,7 +53,11 @@
         </div>
         <div class="row">
             <div class="col-lg-4" id="resultbox" hidden>
-                Converted amount: <span id="result">X.YZ&dollar;</span>
+                Converted amount approx. <span id="result">X.YZ</span> <span id="result-name">&dollar;</span>
+            </div>
+
+            <div class="col-lg-4 alert alert-danger" role="alert" id="errorbox" hidden>
+                <span class="glyphicon glyphicon-remove"></span> We do not have this conversion rate on file, sorry.
             </div>
         </div>
 
@@ -63,16 +66,26 @@
 
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script>
-            function displayResult(val) {
+            function displayResult(val, name) {
                 var resultDiv = $("#resultbox");
                 var resultSpan = $("#result");
+                var resultName = $("#result-name");
+                $("#errorbox").hide();
 
                 if (resultDiv.is(":hidden")) {
                     resultDiv.show();
                 }
 
-                resultSpan.html(val);
+                resultSpan.text(val.toFixed(2)).attr("title", val);
+                resultName.html(name);
                 resultSpan.effect("highlight", 1000)
+            }
+
+            function displayError() {
+                var resultDiv = $("#resultbox");
+                var errorDiv = $("#errorbox");
+                resultDiv.hide();
+                errorDiv.show();
             }
 
             function onFieldUpdate() {
@@ -84,15 +97,13 @@
                     var url = "conversion/" + sourceCurrency;
                     $.ajax({
                         url: url,
-                        data: {amount: parseFloat(amount), to: destinationCurrency},
+                        data: {amount: parseFloat(amount), to: destinationCurrency}
                     }).done(function(data) {
-                        displayResult(data["value"]);
-                    });
-
+                        displayResult(parseFloat(data["value"]), data["destination"]);
+                    }).error(displayError);
                 }
             }
-
-            $("#source-amount").keyup(onFieldUpdate);
+            $("#source-amount").keypress(onFieldUpdate);
             $("#source-currency").change(onFieldUpdate);
             $("#destination-currency").change(onFieldUpdate);
         </script>

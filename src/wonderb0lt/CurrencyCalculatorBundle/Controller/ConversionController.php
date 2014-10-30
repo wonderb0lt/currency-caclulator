@@ -30,8 +30,8 @@ class ConversionController extends Controller {
 
         if ($exchangeRate !== null) {
             return new JsonResponse(array(
-                "source" => $sourceCurrency,
-                "destination" => $destinationCurrency,
+                "source" => $exchangeRate->getSourceCurrency()->getDisplayName(),
+                "destination" => $exchangeRate->getDestinationCurrency()->getDisplayName(),
                 "sourceAmount" => $amount,
                 "rate" => $exchangeRate->getRate(),
                 "value" => $amount * $exchangeRate->getRate()

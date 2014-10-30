@@ -19,5 +19,5 @@ Or, if you want to run this on your local machine:
 If you want to run this on your machine:
 
 * PHP 5.3.3 or higher with JSON and ctype support, correctly configured (see [Doctrine docs](http://symfony.com/doc/current/reference/requirements.html#required))
-* A MySQL database on your localhost with an empty PW for root (or edit [the settings](https://github.com/wonderb0lt/currency-caclulator/blob/master/app/config/config_dev.yml) accordingly)
+* A MySQL database on your localhost with an empty PW for root (or edit [the settings](https://github.com/wonderb0lt/currency-caclulator/blob/master/app/config/parameters.yml) accordingly)
 * A browser capable of HTML 5 and JavaScript. :)

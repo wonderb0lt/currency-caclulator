@@ -6,7 +6,8 @@ A simple tool for converting currencies. Nothing to use in production, just a si
 
 The easiest way to get this working is using Vagrant. Run `vagrant up`, wait for completion and go to [10.0.20.10:8000](10.0.20.10:8000).
 
-Or, if you want to run this 
+Or, if you want to run this on your local machine:
+
 1. Configure the database settings in your config_dev.yml
 2. Run `app/console doctrine:schema:update --force` in project directory
 3. Run `app/console doctrine:fixtures:load`

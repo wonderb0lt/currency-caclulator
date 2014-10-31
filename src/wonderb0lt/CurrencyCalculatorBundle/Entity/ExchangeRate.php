@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ExchangeRate
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="wonderb0lt\CurrencyCalculatorBundle\Entity\ExchangeRateRepository")
  */
 class ExchangeRate
 {

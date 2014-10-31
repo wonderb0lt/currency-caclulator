@@ -18,15 +18,8 @@ class ConversionController extends Controller {
             throw new HttpException(400, "Please pass values for source/destination currency and amount");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $q = $em->createQuery("SELECT e FROM wonderb0ltCurrencyCalculatorBundle:ExchangeRate e
-                               INNER JOIN e.sourceCurrency src
-                               INNER JOIN e.destinationCurrency dst
-                               WHERE src.isoCode = :src AND dst.isoCode = :dst ");
-
-        $q  ->setParameter("src", $sourceCurrency)
-            ->setParameter("dst", $destinationCurrency);
-        $exchangeRate = $q->getOneOrNullResult();
+        $model = $this->getDoctrine()->getManager()->getRepository("wonderb0ltCurrencyCalculatorBundle:ExchangeRate");
+        $exchangeRate = $model->findOneByCurrencyPair($sourceCurrency, $destinationCurrency);
 
         if ($exchangeRate !== null) {
             return new JsonResponse(array(

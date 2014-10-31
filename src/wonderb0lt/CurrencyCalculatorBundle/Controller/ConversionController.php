@@ -14,7 +14,7 @@ class ConversionController extends Controller {
         $amount = $request->get("amount");
 
         // I *could* validate my data via Symfony2's validation here, but that's a bit over the top I think...
-        if (empty($sourceCurrency) || empty($destinationCurrency) || empty($amount)) {
+        if (empty($sourceCurrency) || empty($destinationCurrency) || $amount === null || $amount === "") {
             throw new HttpException(400, "Please pass values for source/destination currency and amount");
         }
 

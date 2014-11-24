@@ -4,21 +4,7 @@
         <title>A tiny currency calculator</title>
         <meta name="author" content="Patrick Stegmann">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <style>
-            body {
-                margin: 2%;
-            }
-
-            #resultbox {
-                margin-top: 1%;
-                font-size: 1.2em;
-            }
-
-            #result {
-                font-weight: bold;
-                border-bottom: 1px dashed gray;
-            }
-        </style>
+        <script data-main="js/main" src="js/libs/require/require.js"></script>
     </head>
     <body>
         <div class="row">
@@ -26,25 +12,5 @@
 
             </div>
         </div>
-
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script type="text/javascript"
-                src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-        <script type="text/javascript"
-                src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
-        <script>
-            var Router = Backbone.Router.extend({
-                routes: {
-                    '': 'home'
-                }
-            });
-
-            var router = new Router();
-            router.on('route:home', function () {
-                console.log('Home is where the heart is');
-            });
-
-            Backbone.history.start();
-        </script>
     </body>
 </html>

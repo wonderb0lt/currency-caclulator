@@ -4,13 +4,30 @@
         <title>A tiny currency calculator</title>
         <meta name="author" content="Patrick Stegmann">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <style>
+            .page {
+                text-align: center;
+                margin: auto;
+                margin-top: 10%;
+            }
+
+            input.zen-input {
+                border: none;
+                border-bottom: 1px dotted darkgray;
+                outline: none;
+            }
+
+            input.zen-input[type=number] {
+                text-align: right;
+                width: 100px;
+            }
+        </style>
         <script data-main="js/main" src="js/libs/require/require.js"></script>
     </head>
     <body>
-        <div class="row">
-            <div class="col-lg-12" id="page">
+        <div id="page" class="page">
 
-            </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,18 @@
+<p>I have
+    <input name="amount" id="amount" type="number" class="zen-input"/>
+    &nbsp;
+    <input name="source-currency" id="source-currency" class="zen-input" placeholder=""/>
+</p>
+<p>
+    How much are they worth in <input name="destination-currency" id="destination-currency" class="zen-input" placeholder=""/>
+</p>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+    var currencies =
+    <%= currencies %>;
+    _.each(['source-currency', 'destination-currency'], function (item) {
+        $('#' + item).autocomplete({
+            source: currencies
+        });
+    });
+</script>

@@ -2,7 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-], function ($, _, Backbone) {
+    'views/form'
+], function ($, _, Backbone, FormView) {
     var Router = Backbone.Router.extend({
         routes: {
             '': 'index'
@@ -12,7 +13,7 @@ define([
     var initialize = function () {
         var router = new Router;
         router.on('route:index', function () {
-            console.log('Home, sweet home')
+            new FormView().render();
         });
 
         Backbone.history.start();

@@ -5,7 +5,7 @@ define([
     return Backbone.Model.extend({
         defaults: {
             key: "none",
-            "name": "none"
+            name: "none"
         }
     });
 });

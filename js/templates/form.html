@@ -1,18 +1,43 @@
-<p>I have
-    <input name="amount" id="amount" type="number" class="zen-input"/>
+<p>
+    I have
+    <input name="amount" id="amount" type="number" class="zen-input calculate-inputs" autofocus="autofocus"/>
     &nbsp;
-    <input name="source-currency" id="source-currency" class="zen-input" placeholder=""/>
+    bucks.
 </p>
 <p>
-    How much are they worth in <input name="destination-currency" id="destination-currency" class="zen-input" placeholder=""/>
+    How much are they worth in
+    <select id="currency-selection" class="calculate-inputs">
+        <% _.each(currencies, function(v, k) { %>
+        <option value="<%=k%>"
+        <% if (k == 'EUR') { %> selected <% } %>><%=v%></option>
+        <% })%>
+    </select>
+    ?
 </p>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<p id="result"></p>
 <script>
-    var currencies =
-    <%= currencies %>;
-    _.each(['source-currency', 'destination-currency'], function (item) {
-        $('#' + item).autocomplete({
-            source: currencies
-        });
+    $('.calculate-inputs').change(function () {
+        var amount = parseFloat($('#amount').val());
+        var currency = $('#currency-selection').val();
+        console.log('Now, how much WOULD ' + amount + " be in " + currency + "?");
+
+        $.ajax({
+                    url: 'https://openexchangerates.org/api/latest.json?app_id=12a9fc80491043a5a133c3c355dfb874',
+                    beforeSend: function () {
+                        $('<img />')
+                                .attr('src', 'http://www.ajaxload.info/cache/FF/FF/FF/00/00/00/1-1.gif')
+                                .appendTo($('#result'));
+                    }
+                }
+        ).always(function() {
+            $('#result').empty();
+        }).done(function(data) {
+                    var converted = amount * data.rates[currency]
+                    $('#result').html(
+                            'That would be <strong>'
+                            + converted.toFixed(2)
+                            + '</strong> '
+                            + currency);
+        })
     });
 </script>

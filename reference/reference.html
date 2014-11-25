@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Arimo' type='text/css'>
+
+        <title>A tiny currency calculator</title>
+        <meta name="author" content="Patrick Stegmann">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <style>
+            * {
+                font-family: "Helvetica Neue", HelveticaNeue, TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif !important;
+            }
+
+            body {
+                background-color: lightgoldenrodyellow;
+                text-align: center;
+                margin: auto;
+            }
+
+            .page {
+                margin-top: 5%;
+                font-size: 1.5em;
+            }
+
+            input.zen-input {
+                border: none;
+                border-bottom: 1px dotted darkgray;
+                outline: none;
+                background-color: lightgoldenrodyellow;
+            }
+
+            input.zen-input[type=number] {
+                text-align: right;
+                width: 100px;
+            }
+
+            select#currency-selection {
+                border: 0;
+                outline: 0;
+                background: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Currency Calculator</h1>
+
+        <div id="page" class="page">
+            <p>
+                I have
+                <input name="amount" id="amount" type="number" class="zen-input calculate-inputs"
+                       autofocus="autofocus"/>
+                &nbsp;
+                bucks.
+            </p>
+
+            <p>
+                How much are they worth in
+                <select id="currency-selection" class="calculate-inputs">
+                    <option>Euro</option>
+                    <option>US Dollar</option>
+                </select>
+                ?
+            </p>
+            <p id="result">That'd be <strong>16.03</strong> EUR</p>
+        </div>
+    </body>
+</html>
